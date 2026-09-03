@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ms">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rapid Bus Batu Caves - Laluan</title>
+
+<title>Laluan Batu Caves</title>
 
 <style>
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -18,202 +20,240 @@ body {
   color: #183153;
 }
 
-/* SIDEBAR */
-.sidebar {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 255px;
-  height: 100vh;
-  background: #173f7a;
-  color: white;
-  padding: 35px 16px;
-}
+/* =========================
+   HEADER
+========================= */
 
-.logo {
-  width: 120px;
-  height: 120px;
-  margin: 0 auto 18px;
-  border-radius: 50%;
+.header {
   background: white;
+  border-bottom: 1px solid #e3e8f0;
+  padding: 16px 30px;
+
   display: flex;
   align-items: center;
-  justify-content: center;
-  color: #17458a;
-  font-size: 38px;
-  font-weight: bold;
-  border: 2px solid #ff4b4b;
+  justify-content: space-between;
 }
 
 .brand {
-  text-align: center;
-  font-size: 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.logo {
+  width: 58px;
+  height: 58px;
+
+  border-radius: 50%;
+  background: white;
+  border: 2px solid #ef4b4b;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 28px;
+}
+
+.brand-title {
+  font-size: 21px;
   font-weight: bold;
-  line-height: 1.2;
+  color: #173f7a;
 }
 
-.subtitle {
-  text-align: center;
-  margin-top: 8px;
-  font-size: 14px;
-  opacity: .8;
+.brand-subtitle {
+  font-size: 13px;
+  color: #718096;
+  margin-top: 4px;
 }
 
-.menu {
-  margin-top: 30px;
+.header-note {
+  font-size: 13px;
+  color: #64748b;
 }
 
-.menu-item {
-  padding: 14px 18px;
-  margin-bottom: 7px;
-  border-radius: 10px;
-  font-size: 16px;
-}
+/* =========================
+   MAIN
+========================= */
 
-.menu-item.active {
-  background: #2d68d8;
-  font-weight: bold;
-}
-
-.menu-item span {
-  margin-right: 8px;
-}
-
-/* MAIN */
 .main {
-  margin-left: 255px;
-  padding: 25px;
+  padding: 25px 30px;
 }
 
 .card {
   background: white;
+
+  border: 1px solid #e5eaf1;
   border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0,0,0,.06);
+
+  box-shadow: 0 2px 10px rgba(0,0,0,.05);
+
   overflow: hidden;
 }
 
-.header {
+/* =========================
+   TITLE BAR
+========================= */
+
+.topbar {
   padding: 20px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 15px;
+
+  gap: 20px;
 }
 
 .title {
-  font-size: 20px;
+  font-size: 21px;
   font-weight: bold;
-}
-
-.controls {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  color: #173f7a;
 }
 
 .search {
-  width: 280px;
+  width: 300px;
+
   padding: 11px 14px;
+
   border: 1px solid #d8dfeb;
   border-radius: 9px;
+
   outline: none;
+
+  font-size: 13px;
 }
 
 .search:focus {
   border-color: #3470dc;
 }
 
-.update {
-  padding: 10px 16px;
-  border: 1px solid #2d68d8;
-  background: white;
-  color: #1850a5;
-  border-radius: 9px;
-  font-weight: bold;
-  cursor: pointer;
-}
+/* =========================
+   FILTER
+========================= */
 
-.update:hover {
-  background: #f1f5ff;
-}
-
-/* TABS */
 .tabs {
   padding: 0 20px 15px;
+
   display: flex;
   gap: 8px;
 }
 
 .tab {
   border: 1px solid #d5deec;
+
   background: white;
+
   padding: 8px 16px;
+
   border-radius: 9px;
+
   color: #284d80;
+
   font-weight: 600;
+
   cursor: pointer;
+}
+
+.tab:hover {
+  background: #f5f8fd;
 }
 
 .tab.active {
   background: #173f7a;
   color: white;
+
   border-color: #173f7a;
 }
 
-/* TABLE INFO */
+/* =========================
+   INFO
+========================= */
+
 .table-info {
-  text-align: right;
+  display: flex;
+  justify-content: space-between;
+
   padding: 0 20px 15px;
+
   font-size: 13px;
+
   color: #64748b;
 }
 
-/* TABLE */
+/* =========================
+   TABLE
+========================= */
+
 .table-container {
-  overflow-x: auto;
+  overflow: auto;
+
   max-height: 650px;
-  overflow-y: auto;
 }
 
 table {
   width: 100%;
+
   border-collapse: collapse;
-  min-width: 1000px;
+
+  min-width: 1100px;
 }
 
 thead {
   background: #f5f8fc;
+
   position: sticky;
   top: 0;
+
   z-index: 2;
 }
 
 th {
-  padding: 12px 12px;
+  padding: 12px;
+
   text-align: left;
+
   font-size: 12px;
+
   color: #52627a;
+
   border-top: 1px solid #e5eaf2;
   border-bottom: 1px solid #e5eaf2;
+
+  white-space: nowrap;
 }
 
 td {
-  padding: 14px 12px;
+  padding: 13px 12px;
+
   border-bottom: 1px solid #e8edf4;
+
   font-size: 13px;
+
+  vertical-align: middle;
 }
 
 .route {
   font-weight: bold;
+
   color: #16458d;
 }
 
+/* =========================
+   BADGES
+========================= */
+
 .badge {
   display: inline-block;
+
   padding: 5px 9px;
+
   border-radius: 7px;
+
   font-size: 11px;
+
   font-weight: bold;
+
   margin-right: 5px;
 }
 
@@ -232,357 +272,963 @@ td {
   color: #3268d3;
 }
 
-/* RESPONSIVE */
-@media (max-width: 900px) {
-  .sidebar {
-    width: 200px;
+/* =========================
+   NUMBERS
+========================= */
+
+.value {
+  font-weight: 600;
+
+  font-size: 14px;
+}
+
+/* =========================
+   EDIT
+========================= */
+
+.number-input {
+  width: 65px;
+
+  padding: 7px 8px;
+
+  border: 1px solid #b9c9e3;
+
+  border-radius: 7px;
+
+  text-align: center;
+
+  font-size: 13px;
+
+  outline: none;
+}
+
+.number-input:focus {
+  border-color: #2d68d8;
+}
+
+.action {
+  padding: 7px 11px;
+
+  border: 1px solid #b8ccec;
+
+  background: white;
+
+  color: #1850a5;
+
+  border-radius: 8px;
+
+  font-size: 12px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+.action:hover {
+  background: #f2f6ff;
+}
+
+.save {
+  background: #173f7a;
+  color: white;
+
+  border-color: #173f7a;
+}
+
+.cancel {
+  color: #64748b;
+
+  border-color: #d5deec;
+
+  margin-left: 5px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:800px) {
+
+  .header {
+    padding: 15px 18px;
   }
 
   .main {
-    margin-left: 200px;
+    padding: 15px 18px;
   }
 
-  .header {
-    flex-direction: column;
+  .header-note {
+    display: none;
+  }
+
+  .topbar {
     align-items: flex-start;
-  }
 
-  .controls {
-    width: 100%;
+    flex-direction: column;
   }
 
   .search {
     width: 100%;
   }
+
 }
+
 </style>
 </head>
 
+
 <body>
 
-<!-- SIDEBAR -->
-<aside class="sidebar">
 
-  <div class="logo">🚌</div>
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
 
   <div class="brand">
-    RAPID BUS BATU<br>
-    CAVES
+
+    <div class="logo">
+      🚌
+    </div>
+
+    <div>
+
+      <div class="brand-title">
+        Rapid Bus Batu Caves
+      </div>
+
+      <div class="brand-subtitle">
+        Senarai Perkhidmatan Laluan
+      </div>
+
+    </div>
+
   </div>
 
-  <div class="subtitle">
-    DEPOT DASHBOARD
+
+  <div class="header-note">
+    Maklumat Laluan BCV
   </div>
 
-  <div class="menu">
-    <div class="menu-item active">🏠 Ringkasan</div>
-    <div class="menu-item">🗺️ Laluan</div>
-    <div class="menu-item">🚌 Kenderaan</div>
-    <div class="menu-item">👥 Agihan</div>
-    <div class="menu-item">⚠️ ROD & Insiden</div>
-    <div class="menu-item">🕘 Kehadiran</div>
-    <div class="menu-item">📄 Laporan</div>
-    <div class="menu-item">⚙️ Tetapan</div>
-  </div>
-
-</aside>
+</header>
 
 
-<!-- MAIN -->
+
+<!-- =========================
+     MAIN
+========================= -->
+
 <main class="main">
 
-  <div class="card">
+<div class="card">
 
-    <div class="header">
 
-      <div class="title">
-        🗺️ SENARAI LALUAN BCV
-      </div>
+  <!-- TITLE -->
 
-      <div class="controls">
-        <input
-          type="text"
-          id="search"
-          class="search"
-          placeholder="Cari route / origin / destination..."
-          onkeyup="searchRoutes()"
-        >
+  <div class="topbar">
 
-        <button class="update" onclick="location.reload()">
-          🖊️ Kemaskini
-        </button>
-      </div>
-
+    <div class="title">
+      LALUAN BATU CAVES
     </div>
 
-
-    <!-- TABS -->
-    <div class="tabs">
-
-      <button class="tab active" onclick="filterRoutes('ALL', this)">
-        SEMUA
-      </button>
-
-      <button class="tab" onclick="filterRoutes('RKL', this)">
-        RKL (8)
-      </button>
-
-      <button class="tab" onclick="filterRoutes('ROD', this)">
-        ROD (0)
-      </button>
-
-      <button class="tab" onclick="filterRoutes('OS', this)">
-        OS (0)
-      </button>
-
-    </div>
-
-
-    <div class="table-info">
-      <span id="routeCount">11 laluan</span>
-    </div>
-
-
-    <!-- TABLE -->
-    <div class="table-container">
-
-      <table>
-
-        <thead>
-          <tr>
-            <th>NO.</th>
-            <th>ROUTE</th>
-            <th>DEPOT</th>
-            <th>ORIGIN</th>
-            <th>DESTINATION</th>
-            <th>TYPE</th>
-            <th>WEEKDAY</th>
-            <th>WEEKEND</th>
-          </tr>
-        </thead>
-
-        <tbody id="routeTable">
-
-          <tr data-type="RKL">
-            <td>1</td>
-            <td class="route">151</td>
-            <td>Batu Caves</td>
-            <td>BANDAR BARU SELAYANG</td>
-            <td>HAB LEBUH PUDU</td>
-            <td>
-              <span class="badge rkl">RKL</span>
-              <span class="badge normal">NORMAL</span>
-            </td>
-            <td>4</td>
-            <td>4</td>
-          </tr>
-
-          <tr data-type="RKL">
-            <td>2</td>
-            <td class="route">171</td>
-            <td>Batu Caves</td>
-            <td>HAB WIRA DAMAI</td>
-            <td>LEBUH AMPANG VIA SENTUL</td>
-            <td>
-              <span class="badge rkl">RKL</span>
-              <span class="badge normal">NORMAL</span>
-            </td>
-            <td>7</td>
-            <td>6</td>
-          </tr>
-
-          <tr data-type="RKL">
-            <td>3</td>
-            <td class="route">173</td>
-            <td>Batu Caves</td>
-            <td>TAMAN JASA UTAMA</td>
-            <td>LEBUH AMPANG</td>
-            <td>
-              <span class="badge rkl">RKL</span>
-              <span class="badge normal">NORMAL</span>
-            </td>
-            <td>15</td>
-            <td>10</td>
-          </tr>
-
-          <tr data-type="RKL">
-            <td>4</td>
-            <td class="route">180</td>
-            <td>Batu Caves</td>
-            <td>TAMAN DATO' SENU</td>
-            <td>HAB PASAR SENI</td>
-            <td>
-              <span class="badge rkl">RKL</span>
-              <span class="badge normal">NORMAL</span>
-            </td>
-            <td>4</td>
-            <td>3</td>
-          </tr>
-
-          <tr data-type="RKL">
-            <td>5</td>
-            <td class="route">190</td>
-            <td>Batu Caves</td>
-            <td>DESA SRI HARTAMAS</td>
-            <td>LIN HO JALAN LEKIU</td>
-            <td>
-              <span class="badge rkl">RKL</span>
-              <span class="badge normal">NORMAL</span>
-            </td>
-            <td>9</td>
-            <td>9</td>
-          </tr>
-
-          <tr data-type="RKL">
-            <td>6</td>
-            <td class="route">202</td>
-            <td>Batu Caves</td>
-            <td>HAB WIRA DAMAI</td>
-            <td>LEBUH AMPANG VIA GOMBAK</td>
-            <td>
-              <span class="badge rkl">RKL</span>
-              <span class="badge normal">NORMAL</span>
-            </td>
-            <td>12</td>
-            <td>7</td>
-          </tr>
-
-          <tr data-type="RKL">
-            <td>7</td>
-            <td class="route">220</td>
-            <td>Batu Caves</td>
-            <td>TAMAN MELAWATI</td>
-            <td>LEBUH AMPANG</td>
-            <td>
-              <span class="badge rkl">RKL</span>
-              <span class="badge normal">NORMAL</span>
-            </td>
-            <td>7</td>
-            <td>5</td>
-          </tr>
-
-          <tr data-type="RKL">
-            <td>8</td>
-            <td class="route">222</td>
-            <td>Batu Caves</td>
-            <td>TAMAN MELAWATI</td>
-            <td>STESEN LRT WANGSA MAJU</td>
-            <td>
-              <span class="badge rkl">RKL</span>
-              <span class="badge looping">LOOPING</span>
-            </td>
-            <td>3</td>
-            <td>2</td>
-          </tr>
-
-          <tr data-type="RKL">
-            <td>9</td>
-            <td class="route">250</td>
-            <td>Batu Caves</td>
-            <td>STESEN LRT WANGSA MAJU</td>
-            <td>LEBUH AMPANG</td>
-            <td>
-              <span class="badge rkl">RKL</span>
-              <span class="badge normal">NORMAL</span>
-            </td>
-            <td>20</td>
-            <td>12</td>
-          </tr>
-
-          <tr data-type="RKL">
-            <td>10</td>
-            <td class="route">251</td>
-            <td>Batu Caves</td>
-            <td>AU3 JENTAYU</td>
-            <td>CHOW KIT</td>
-            <td>
-              <span class="badge rkl">RKL</span>
-              <span class="badge looping">LOOPING</span>
-            </td>
-            <td>6</td>
-            <td>5</td>
-          </tr>
-
-          <tr data-type="RKL">
-            <td>11</td>
-            <td class="route">302</td>
-            <td>Batu Caves</td>
-            <td>TITIWANGSA</td>
-            <td>KLCC</td>
-            <td>
-              <span class="badge rkl">RKL</span>
-              <span class="badge looping">LOOPING</span>
-            </td>
-            <td>3</td>
-            <td>3</td>
-          </tr>
-
-        </tbody>
-
-      </table>
-
-    </div>
+    <input
+      id="search"
+      class="search"
+      type="text"
+      placeholder="Cari route / origin / destination..."
+      onkeyup="searchRoutes()"
+    >
 
   </div>
+
+
+
+  <!-- FILTER -->
+
+  <div class="tabs">
+
+    <button
+      class="tab active"
+      onclick="filterRoutes('ALL', this)"
+    >
+      SEMUA
+    </button>
+
+
+    <button
+      class="tab"
+      onclick="filterRoutes('RKL', this)"
+    >
+      RKL
+    </button>
+
+
+    <button
+      class="tab"
+      onclick="filterRoutes('ROD', this)"
+    >
+      ROD
+    </button>
+
+
+    <button
+      class="tab"
+      onclick="filterRoutes('OS', this)"
+    >
+      OS
+    </button>
+
+  </div>
+
+
+
+  <!-- INFO -->
+
+  <div class="table-info">
+
+    <span>
+      Senarai laluan
+    </span>
+
+    <span id="routeCount">
+      11 laluan
+    </span>
+
+  </div>
+
+
+
+  <!-- TABLE -->
+
+  <div class="table-container">
+
+  <table>
+
+    <thead>
+
+      <tr>
+
+        <th>NO.</th>
+
+        <th>ROUTE</th>
+
+        <th>DEPOT</th>
+
+        <th>ORIGIN</th>
+
+        <th>DESTINATION</th>
+
+        <th>TYPE</th>
+
+        <th>WEEKDAY</th>
+
+        <th>WEEKEND</th>
+
+        <th>TINDAKAN</th>
+
+      </tr>
+
+    </thead>
+
+
+    <tbody id="routeTable">
+
+
+      <tr data-type="RKL" data-route="151">
+
+        <td>1</td>
+
+        <td class="route">151</td>
+
+        <td>Batu Caves</td>
+
+        <td>BANDAR BARU SELAYANG</td>
+
+        <td>HAB LEBUH PUDU</td>
+
+        <td>
+          <span class="badge rkl">RKL</span>
+          <span class="badge normal">NORMAL</span>
+        </td>
+
+        <td class="weekday value">4</td>
+
+        <td class="weekend value">4</td>
+
+        <td>
+          <button class="action" onclick="editRoute(this)">
+            ✎ Kemaskini
+          </button>
+        </td>
+
+      </tr>
+
+
+      <tr data-type="RKL" data-route="171">
+
+        <td>2</td>
+
+        <td class="route">171</td>
+
+        <td>Batu Caves</td>
+
+        <td>HAB WIRA DAMAI</td>
+
+        <td>LEBUH AMPANG VIA SENTUL</td>
+
+        <td>
+          <span class="badge rkl">RKL</span>
+          <span class="badge normal">NORMAL</span>
+        </td>
+
+        <td class="weekday value">7</td>
+
+        <td class="weekend value">6</td>
+
+        <td>
+          <button class="action" onclick="editRoute(this)">
+            ✎ Kemaskini
+          </button>
+        </td>
+
+      </tr>
+
+
+      <tr data-type="RKL" data-route="173">
+
+        <td>3</td>
+
+        <td class="route">173</td>
+
+        <td>Batu Caves</td>
+
+        <td>TAMAN JASA UTAMA</td>
+
+        <td>LEBUH AMPANG</td>
+
+        <td>
+          <span class="badge rkl">RKL</span>
+          <span class="badge normal">NORMAL</span>
+        </td>
+
+        <td class="weekday value">15</td>
+
+        <td class="weekend value">10</td>
+
+        <td>
+          <button class="action" onclick="editRoute(this)">
+            ✎ Kemaskini
+          </button>
+        </td>
+
+      </tr>
+
+
+      <tr data-type="RKL" data-route="180">
+
+        <td>4</td>
+
+        <td class="route">180</td>
+
+        <td>Batu Caves</td>
+
+        <td>TAMAN DATO' SENU</td>
+
+        <td>HAB PASAR SENI</td>
+
+        <td>
+          <span class="badge rkl">RKL</span>
+          <span class="badge normal">NORMAL</span>
+        </td>
+
+        <td class="weekday value">4</td>
+
+        <td class="weekend value">3</td>
+
+        <td>
+          <button class="action" onclick="editRoute(this)">
+            ✎ Kemaskini
+          </button>
+        </td>
+
+      </tr>
+
+
+      <tr data-type="RKL" data-route="190">
+
+        <td>5</td>
+
+        <td class="route">190</td>
+
+        <td>Batu Caves</td>
+
+        <td>DESA SRI HARTAMAS</td>
+
+        <td>LIN HO JALAN LEKIU</td>
+
+        <td>
+          <span class="badge rkl">RKL</span>
+          <span class="badge normal">NORMAL</span>
+        </td>
+
+        <td class="weekday value">9</td>
+
+        <td class="weekend value">9</td>
+
+        <td>
+          <button class="action" onclick="editRoute(this)">
+            ✎ Kemaskini
+          </button>
+        </td>
+
+      </tr>
+
+
+      <tr data-type="RKL" data-route="202">
+
+        <td>6</td>
+
+        <td class="route">202</td>
+
+        <td>Batu Caves</td>
+
+        <td>HAB WIRA DAMAI</td>
+
+        <td>LEBUH AMPANG VIA GOMBAK</td>
+
+        <td>
+          <span class="badge rkl">RKL</span>
+          <span class="badge normal">NORMAL</span>
+        </td>
+
+        <td class="weekday value">12</td>
+
+        <td class="weekend value">7</td>
+
+        <td>
+          <button class="action" onclick="editRoute(this)">
+            ✎ Kemaskini
+          </button>
+        </td>
+
+      </tr>
+
+
+      <tr data-type="RKL" data-route="220">
+
+        <td>7</td>
+
+        <td class="route">220</td>
+
+        <td>Batu Caves</td>
+
+        <td>TAMAN MELAWATI</td>
+
+        <td>LEBUH AMPANG</td>
+
+        <td>
+          <span class="badge rkl">RKL</span>
+          <span class="badge normal">NORMAL</span>
+        </td>
+
+        <td class="weekday value">7</td>
+
+        <td class="weekend value">5</td>
+
+        <td>
+          <button class="action" onclick="editRoute(this)">
+            ✎ Kemaskini
+          </button>
+        </td>
+
+      </tr>
+
+
+      <tr data-type="RKL" data-route="222">
+
+        <td>8</td>
+
+        <td class="route">222</td>
+
+        <td>Batu Caves</td>
+
+        <td>TAMAN MELAWATI</td>
+
+        <td>STESEN LRT WANGSA MAJU</td>
+
+        <td>
+          <span class="badge rkl">RKL</span>
+          <span class="badge looping">LOOPING</span>
+        </td>
+
+        <td class="weekday value">3</td>
+
+        <td class="weekend value">2</td>
+
+        <td>
+          <button class="action" onclick="editRoute(this)">
+            ✎ Kemaskini
+          </button>
+        </td>
+
+      </tr>
+
+
+      <tr data-type="RKL" data-route="250">
+
+        <td>9</td>
+
+        <td class="route">250</td>
+
+        <td>Batu Caves</td>
+
+        <td>STESEN LRT WANGSA MAJU</td>
+
+        <td>LEBUH AMPANG</td>
+
+        <td>
+          <span class="badge rkl">RKL</span>
+          <span class="badge normal">NORMAL</span>
+        </td>
+
+        <td class="weekday value">20</td>
+
+        <td class="weekend value">12</td>
+
+        <td>
+          <button class="action" onclick="editRoute(this)">
+            ✎ Kemaskini
+          </button>
+        </td>
+
+      </tr>
+
+
+      <tr data-type="RKL" data-route="251">
+
+        <td>10</td>
+
+        <td class="route">251</td>
+
+        <td>Batu Caves</td>
+
+        <td>AU3 JENTAYU</td>
+
+        <td>CHOW KIT</td>
+
+        <td>
+          <span class="badge rkl">RKL</span>
+          <span class="badge looping">LOOPING</span>
+        </td>
+
+        <td class="weekday value">6</td>
+
+        <td class="weekend value">5</td>
+
+        <td>
+          <button class="action" onclick="editRoute(this)">
+            ✎ Kemaskini
+          </button>
+        </td>
+
+      </tr>
+
+
+      <tr data-type="RKL" data-route="302">
+
+        <td>11</td>
+
+        <td class="route">302</td>
+
+        <td>Batu Caves</td>
+
+        <td>TITIWANGSA</td>
+
+        <td>KLCC</td>
+
+        <td>
+          <span class="badge rkl">RKL</span>
+          <span class="badge looping">LOOPING</span>
+        </td>
+
+        <td class="weekday value">3</td>
+
+        <td class="weekend value">3</td>
+
+        <td>
+          <button class="action" onclick="editRoute(this)">
+            ✎ Kemaskini
+          </button>
+        </td>
+
+      </tr>
+
+
+    </tbody>
+
+  </table>
+
+  </div>
+
+</div>
 
 </main>
 
 
+
 <script>
+
+/* =========================
+   SAVE DATA
+========================= */
+
+const STORAGE_KEY = "bcv-route-data";
+
+
+function saveData(route, weekday, weekend) {
+
+  const data =
+    JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+
+  data[route] = {
+    weekday: weekday,
+    weekend: weekend
+  };
+
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(data)
+  );
+}
+
+
+/* =========================
+   LOAD DATA
+========================= */
+
+function loadData() {
+
+  const data =
+    JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+
+  document
+    .querySelectorAll("#routeTable tr")
+    .forEach(row => {
+
+      const route =
+        row.dataset.route;
+
+      if (data[route]) {
+
+        row.querySelector(".weekday")
+          .textContent =
+          data[route].weekday;
+
+        row.querySelector(".weekend")
+          .textContent =
+          data[route].weekend;
+
+      }
+
+    });
+
+}
+
+
+/* =========================
+   EDIT ROUTE
+========================= */
+
+function editRoute(button) {
+
+  const row =
+    button.closest("tr");
+
+  const weekday =
+    row.querySelector(".weekday")
+      .textContent.trim();
+
+  const weekend =
+    row.querySelector(".weekend")
+      .textContent.trim();
+
+
+  row.querySelector(".weekday")
+    .innerHTML =
+    `<input
+      class="number-input"
+      type="number"
+      min="0"
+      value="${weekday}"
+    >`;
+
+
+  row.querySelector(".weekend")
+    .innerHTML =
+    `<input
+      class="number-input"
+      type="number"
+      min="0"
+      value="${weekend}"
+    >`;
+
+
+  button.parentElement.innerHTML =
+
+    `<button
+      class="action save"
+      onclick="saveRouteEdit(this)"
+    >
+      Simpan
+    </button>
+
+    <button
+      class="action cancel"
+      onclick="cancelRouteEdit(this)"
+    >
+      Batal
+    </button>`;
+
+}
+
+
+/* =========================
+   SAVE EDIT
+========================= */
+
+function saveRouteEdit(button) {
+
+  const row =
+    button.closest("tr");
+
+  const route =
+    row.dataset.route;
+
+
+  const weekday =
+    Math.max(
+      0,
+      Number(
+        row.querySelector(".weekday input").value
+      ) || 0
+    );
+
+
+  const weekend =
+    Math.max(
+      0,
+      Number(
+        row.querySelector(".weekend input").value
+      ) || 0
+    );
+
+
+  row.querySelector(".weekday")
+    .textContent = weekday;
+
+  row.querySelector(".weekend")
+    .textContent = weekend;
+
+
+  saveData(
+    route,
+    weekday,
+    weekend
+  );
+
+
+  row.querySelector("td:last-child")
+    .innerHTML =
+
+    `<button
+      class="action"
+      onclick="editRoute(this)"
+    >
+      ✎ Kemaskini
+    </button>`;
+
+}
+
+
+/* =========================
+   CANCEL
+========================= */
+
+function cancelRouteEdit(button) {
+
+  loadData();
+
+  const row =
+    button.closest("tr");
+
+  const data =
+    JSON.parse(
+      localStorage.getItem(STORAGE_KEY) || "{}"
+    );
+
+  const route =
+    row.dataset.route;
+
+
+  if (!data[route]) {
+
+    location.reload();
+
+    return;
+
+  }
+
+
+  row.querySelector(".weekday")
+    .textContent =
+    data[route].weekday;
+
+
+  row.querySelector(".weekend")
+    .textContent =
+    data[route].weekend;
+
+
+  row.querySelector("td:last-child")
+    .innerHTML =
+
+    `<button
+      class="action"
+      onclick="editRoute(this)"
+    >
+      ✎ Kemaskini
+    </button>`;
+
+}
+
+
+/* =========================
+   FILTER
+========================= */
 
 function filterRoutes(type, button) {
 
-  document.querySelectorAll(".tab").forEach(tab => {
-    tab.classList.remove("active");
-  });
+  document
+    .querySelectorAll(".tab")
+    .forEach(tab =>
+      tab.classList.remove("active")
+    );
+
 
   button.classList.add("active");
 
-  const rows = document.querySelectorAll("#routeTable tr");
-  let count = 0;
 
-  rows.forEach(row => {
+  document
+    .querySelectorAll("#routeTable tr")
+    .forEach(row => {
 
-    if (type === "ALL" || row.dataset.type === type) {
-      row.style.display = "";
-      count++;
-    } else {
-      row.style.display = "none";
-    }
+      if (
+        type === "ALL" ||
+        row.dataset.type === type
+      ) {
 
-  });
+        row.style.display = "";
 
-  document.getElementById("routeCount").textContent =
-    count + " laluan";
+      } else {
+
+        row.style.display = "none";
+
+      }
+
+    });
+
+
+  updateCount();
+
 }
 
+
+/* =========================
+   SEARCH
+========================= */
 
 function searchRoutes() {
 
-  const search =
-    document.getElementById("search").value.toLowerCase();
+  updateCount();
 
-  const rows =
-    document.querySelectorAll("#routeTable tr");
+}
+
+
+/* =========================
+   COUNT
+========================= */
+
+function updateCount() {
+
+  const query =
+    document
+      .getElementById("search")
+      .value
+      .toLowerCase();
+
+
+  const activeTab =
+    document
+      .querySelector(".tab.active")
+      .textContent
+      .trim();
+
 
   let count = 0;
 
-  rows.forEach(row => {
 
-    const text = row.innerText.toLowerCase();
+  document
+    .querySelectorAll("#routeTable tr")
+    .forEach(row => {
 
-    if (text.includes(search)) {
-      row.style.display = "";
-      count++;
-    } else {
-      row.style.display = "none";
-    }
+      const type =
+        row.dataset.type;
 
-  });
+      const text =
+        row.innerText.toLowerCase();
 
-  document.getElementById("routeCount").textContent =
+
+      let typeMatch =
+        activeTab === "SEMUA" ||
+        type === activeTab;
+
+
+      let searchMatch =
+        text.includes(query);
+
+
+      if (
+        typeMatch &&
+        searchMatch
+      ) {
+
+        row.style.display = "";
+
+        count++;
+
+      } else {
+
+        row.style.display = "none";
+
+      }
+
+    });
+
+
+  document
+    .getElementById("routeCount")
+    .textContent =
     count + " laluan";
+
 }
+
+
+/* =========================
+   START
+========================= */
+
+loadData();
 
 </script>
 
