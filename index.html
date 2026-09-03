@@ -1048,26 +1048,53 @@ function prepareTable() {
     .querySelectorAll("#routeTable tr")
     .forEach(row => {
 
-      const cells = row.querySelectorAll("td");
+      const cells =
+        row.querySelectorAll("td");
 
-      /* BUANG DEPOT */
-      if (cells.length >= 9) {
-        cells[2].remove();
+      if (cells.length < 8) {
+        return;
       }
 
 
-      /* TYPE - HANYA RKL / ROD / OS */
-      const typeCell =
-        row.querySelector("td:nth-child(5)");
+      /* =========================
+         REMOVE DEPOT
+      ========================= */
 
-      const type =
-        row.dataset.type;
+      const depotCell = cells[2];
 
-      typeCell.innerHTML =
-        `<span class="badge rkl">${type}</span>`;
+      if (
+        depotCell &&
+        depotCell.textContent.trim() === "Batu Caves"
+      ) {
+        depotCell.remove();
+      }
 
 
-      /* LOS */
+      /* =========================
+         TYPE
+         ONLY RKL / ROD / OS
+      ========================= */
+
+      const typeBadge =
+        row.querySelector(".badge");
+
+      if (typeBadge) {
+
+        const typeCell =
+          typeBadge.closest("td");
+
+        const type =
+          row.dataset.type;
+
+        typeCell.innerHTML =
+          `<span class="badge rkl">${type}</span>`;
+      }
+
+
+      /* =========================
+         LOS
+      ========================= */
+
       const ppCell =
         row.querySelector(".weekday");
 
