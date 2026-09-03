@@ -521,20 +521,13 @@ td {
         <th>NO.</th>
 
         <th>ROUTE</th>
-
-        <th>DEPOT</th>
-
-        <th>ORIGIN</th>
-
-        <th>DESTINATION</th>
-
-        <th>TYPE</th>
-
-        <th>WEEKDAY</th>
-
-        <th>WEEKEND</th>
-
-        <th>TINDAKAN</th>
+<th>ORIGIN</th>
+<th>DESTINATION</th>
+<th>TYPE</th>
+<th>LOS</th>
+<th>PP</th>
+<th>AC</th>
+<th>UPDATE</th>
 
       </tr>
 
@@ -654,17 +647,19 @@ td {
 const STORAGE_KEY = "bcv-route-data";
 
 
-function saveData(route, weekday, weekend) {
+function saveData(route, los, pp, ac) {
 
   const data =
     JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
 
   data[route] = {
-    weekday: weekday,
-    weekend: weekend
+    los: los,
+    pp: pp,
+    ac: ac
   };
 
-  data.lastUpdate = new Date().toISOString();
+  data.lastUpdate =
+    new Date().toISOString();
 
   localStorage.setItem(
     STORAGE_KEY,
@@ -680,7 +675,9 @@ function saveData(route, weekday, weekend) {
 function loadData() {
 
   const data =
-    JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+    JSON.parse(
+      localStorage.getItem(STORAGE_KEY) || "{}"
+    );
 
   document
     .querySelectorAll("#routeTable tr")
@@ -691,13 +688,20 @@ function loadData() {
 
       if (data[route]) {
 
-        row.querySelector(".weekday")
-          .textContent =
-          data[route].weekday;
+        if (row.querySelector(".los")) {
+          row.querySelector(".los").textContent =
+            data[route].los;
+        }
 
-        row.querySelector(".weekend")
-          .textContent =
-          data[route].weekend;
+        if (row.querySelector(".pp")) {
+          row.querySelector(".pp").textContent =
+            data[route].pp;
+        }
+
+        if (row.querySelector(".ac")) {
+          row.querySelector(".ac").textContent =
+            data[route].ac;
+        }
 
       }
 
@@ -715,32 +719,46 @@ function editRoute(button) {
   const row =
     button.closest("tr");
 
-  const weekday =
-    row.querySelector(".weekday")
+  const los =
+    row.querySelector(".los")
       .textContent.trim();
 
-  const weekend =
-    row.querySelector(".weekend")
+  const pp =
+    row.querySelector(".pp")
+      .textContent.trim();
+
+  const ac =
+    row.querySelector(".ac")
       .textContent.trim();
 
 
-  row.querySelector(".weekday")
+  row.querySelector(".los")
     .innerHTML =
     `<input
       class="number-input"
       type="number"
       min="0"
-      value="${weekday}"
+      value="${los === "-" ? "" : los}"
     >`;
 
 
-  row.querySelector(".weekend")
+  row.querySelector(".pp")
     .innerHTML =
     `<input
       class="number-input"
       type="number"
       min="0"
-      value="${weekend}"
+      value="${pp}"
+    >`;
+
+
+  row.querySelector(".ac")
+    .innerHTML =
+    `<input
+      class="number-input"
+      type="number"
+      min="0"
+      value="${ac}"
     >`;
 
 
@@ -776,47 +794,61 @@ function saveRouteEdit(button) {
     row.dataset.route;
 
 
-  const weekday =
+  const los =
     Math.max(
       0,
       Number(
-        row.querySelector(".weekday input").value
+        row.querySelector(".los input").value
       ) || 0
     );
 
 
-  const weekend =
+  const pp =
     Math.max(
       0,
       Number(
-        row.querySelector(".weekend input").value
+        row.querySelector(".pp input").value
       ) || 0
     );
 
 
-  row.querySelector(".weekday")
-    .textContent = weekday;
+  const ac =
+    Math.max(
+      0,
+      Number(
+        row.querySelector(".ac input").value
+      ) || 0
+    );
 
-  row.querySelector(".weekend")
-    .textContent = weekend;
+
+  row.querySelector(".los")
+    .textContent = los;
+
+  row.querySelector(".pp")
+    .textContent = pp;
+
+  row.querySelector(".ac")
+    .textContent = ac;
 
 
   saveData(
     route,
-    weekday,
-    weekend
-  ); 
-  
+    los,
+    pp,
+    ac
+  );
+
+
   const now = new Date();
 
-document.getElementById("lastUpdate").textContent =
+  document.getElementById("lastUpdate").textContent =
     now.toLocaleString("en-MY", {
-        day: "numeric",
-        month: "long",
-        year: "numeric",
-        hour: "numeric",
-        minute: "2-digit",
-        hour12: true
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true
     });
 
 
@@ -827,15 +859,16 @@ document.getElementById("lastUpdate").textContent =
       class="action"
       onclick="editRoute(this)"
     >
-      ✎ Kemaskini
+      ✎ UPDATE
     </button>`;
 
 }
 
-
 /* =========================
    CANCEL
 ========================= */
+
+function cancelRouteEdit(button) {
 
 function cancelRouteEdit(button) {
 
@@ -862,14 +895,19 @@ function cancelRouteEdit(button) {
   }
 
 
-  row.querySelector(".weekday")
+  row.querySelector(".los")
     .textContent =
-    data[route].weekday;
+    data[route].los;
 
 
-  row.querySelector(".weekend")
+  row.querySelector(".pp")
     .textContent =
-    data[route].weekend;
+    data[route].pp;
+
+
+  row.querySelector(".ac")
+    .textContent =
+    data[route].ac;
 
 
   row.querySelector("td:last-child")
@@ -879,7 +917,7 @@ function cancelRouteEdit(button) {
       class="action"
       onclick="editRoute(this)"
     >
-      ✎ Kemaskini
+      ✎ UPDATE
     </button>`;
 
 }
@@ -1005,11 +1043,78 @@ function updateCount() {
 
 }
 
+  /* =========================
+   PREPARE TABLE
+========================= */
+
+function prepareTable() {
+
+  document
+    .querySelectorAll("#routeTable tr")
+    .forEach(row => {
+
+      const cells = row.querySelectorAll("td");
+
+      /* BUANG DEPOT */
+      if (cells.length >= 9) {
+        cells[2].remove();
+      }
+
+
+      /* TYPE - HANYA RKL / ROD / OS */
+      const typeCell =
+        row.querySelector("td:nth-child(5)");
+
+      const type =
+        row.dataset.type;
+
+      typeCell.innerHTML =
+        `<span class="badge rkl">${type}</span>`;
+
+
+      /* LOS */
+      const ppCell =
+        row.querySelector(".weekday");
+
+      const acCell =
+        row.querySelector(".weekend");
+
+      if (
+        ppCell &&
+        acCell &&
+        !row.querySelector(".los")
+      ) {
+
+        const losCell =
+          document.createElement("td");
+
+        losCell.className =
+          "los value";
+
+        losCell.textContent =
+          "-";
+
+        ppCell.parentNode.insertBefore(
+          losCell,
+          ppCell
+        );
+
+        ppCell.classList.remove("weekday");
+        ppCell.classList.add("pp");
+
+        acCell.classList.remove("weekend");
+        acCell.classList.add("ac");
+      }
+
+    });
+
+}
 
 /* =========================
    START
 ========================= */
 
+prepareTable();
 loadData();
 
 </script>
