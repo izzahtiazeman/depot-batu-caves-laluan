@@ -25,13 +25,15 @@ body {
 ========================= */
 
 .header {
-  background: white;
-  border-bottom: 1px solid #e3e8f0;
-  padding: 16px 30px;
+    background: #123f7a;
+    border-bottom: none;
+    padding: 14px 30px;
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    color: white;
 }
 
 .brand {
@@ -41,35 +43,32 @@ body {
 }
 
 .logo {
-  width: 58px;
-  height: 58px;
-
-  border-radius: 50%;
-  background: white;
-  border: 2px solid #ef4b4b;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-size: 28px;
+    width: 72px;
+    height: 72px;
+    flex-shrink: 0;
 }
 
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+
 .brand-title {
-  font-size: 21px;
-  font-weight: bold;
-  color: #173f7a;
+    font-size: 21px;
+    font-weight: bold;
+    color: white;
 }
 
 .brand-subtitle {
-  font-size: 13px;
-  color: #718096;
-  margin-top: 4px;
+    font-size: 13px;
+    color: #dbe7f5;
 }
 
 .header-note {
-  font-size: 13px;
-  color: #64748b;
+    color: white;
 }
 
 /* =========================
@@ -388,9 +387,9 @@ td {
 
   <div class="brand">
 
-    <div class="logo">
-      🚌
-    </div>
+  <div class="logo">
+    <img src="logo-batu-caves.png" alt="Depot Batu Caves">
+</div>
 
     <div>
 
@@ -407,9 +406,14 @@ td {
   </div>
 
 
-  <div class="header-note">
-    Maklumat Laluan BCV
-  </div>
+ <div class="header-note">
+    <div class="running-date">
+        📅 2 September 2026
+    </div>
+    <div class="last-update">
+        Last Update: <span id="lastUpdate">-</span>
+    </div>
+</div>
 
 </header>
 
@@ -655,6 +659,8 @@ function saveData(route, weekday, weekend) {
     weekend: weekend
   };
 
+  data.lastUpdate = new Date().toISOString();
+
   localStorage.setItem(
     STORAGE_KEY,
     JSON.stringify(data)
@@ -794,7 +800,19 @@ function saveRouteEdit(button) {
     route,
     weekday,
     weekend
-  );
+  ); 
+  
+  const now = new Date();
+
+document.getElementById("lastUpdate").textContent =
+    now.toLocaleString("en-MY", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true
+    });
 
 
   row.querySelector("td:last-child")
