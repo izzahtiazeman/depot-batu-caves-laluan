@@ -1048,25 +1048,15 @@ function prepareTable() {
     .querySelectorAll("#routeTable tr")
     .forEach(row => {
 
-      const cells =
-        row.querySelectorAll("td");
-
-      if (cells.length < 8) {
-        return;
-      }
-
-
       /* =========================
          REMOVE DEPOT
       ========================= */
 
-      const depotCell = cells[2];
-
       if (
-        depotCell &&
-        depotCell.textContent.trim() === "Batu Caves"
+        row.children[2] &&
+        row.children[2].textContent.trim() === "Batu Caves"
       ) {
-        depotCell.remove();
+        row.children[2].remove();
       }
 
 
@@ -1075,57 +1065,55 @@ function prepareTable() {
          ONLY RKL / ROD / OS
       ========================= */
 
-      const typeBadge =
-        row.querySelector(".badge");
+      const typeCell = row.children[4];
 
-      if (typeBadge) {
-
-        const typeCell =
-          typeBadge.closest("td");
+      if (typeCell) {
 
         const type =
           row.dataset.type;
 
         typeCell.innerHTML =
           `<span class="badge rkl">${type}</span>`;
+
       }
 
 
       /* =========================
-         LOS
+         ADD LOS
       ========================= */
 
-      const ppCell =
-        row.querySelector(".weekday");
+      if (!row.querySelector(".los")) {
 
-      const acCell =
-        row.querySelector(".weekend");
+        const ppCell =
+          row.querySelector(".weekday");
 
-      if (
-        ppCell &&
-        acCell &&
-        !row.querySelector(".los")
-      ) {
+        const acCell =
+          row.querySelector(".weekend");
 
-        const losCell =
-          document.createElement("td");
+        if (ppCell && acCell) {
 
-        losCell.className =
-          "los value";
+          const losCell =
+            document.createElement("td");
 
-        losCell.textContent =
-          "-";
+          losCell.className =
+            "los value";
 
-        ppCell.parentNode.insertBefore(
-          losCell,
-          ppCell
-        );
+          losCell.textContent =
+            "-";
 
-        ppCell.classList.remove("weekday");
-        ppCell.classList.add("pp");
+          ppCell.parentNode.insertBefore(
+            losCell,
+            ppCell
+          );
 
-        acCell.classList.remove("weekend");
-        acCell.classList.add("ac");
+          ppCell.classList.remove("weekday");
+          ppCell.classList.add("pp");
+
+          acCell.classList.remove("weekend");
+          acCell.classList.add("ac");
+
+        }
+
       }
 
     });
